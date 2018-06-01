@@ -3,4 +3,8 @@
     <string name="hello">Bonjour</string>
     <string name="name">Nom</string>
     <string name="country">Pays</string>
+
+    <string name="menu_github" translatable="false">Github</string>
+    <string name="menu_mail" translatable="false">Email</string>
+    <string name="menu_list" translatable="false">Speakers</string>
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuSpeakerList"
+        android:title="@string/menu_list"
+        android:icon="@drawable/ic_view_list"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/menuEmail"
+        android:title="@string/menu_mail"
+        android:icon="@drawable/ic_email"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/menuGithub"
+        android:title="@string/menu_github"
+        android:icon="@drawable/ic_github"
+        app:showAsAction="ifRoom"
+        />
+</menu>
