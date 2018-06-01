@@ -16,9 +16,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         saveSpeaker.setOnClickListener {
-            Snackbar.make(it, "You add ${mainName.text}", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null)
-                    .show()
+            val speakers = SpeakerService.speakers
+
+            if(mainName.text.isNullOrEmpty()){
+                Snackbar.make(it, "Nom est obligatoire", Snackbar.LENGTH_LONG)
+                        .setAction("Erreur", null)
+                        .show()
+            }
+            else{
+                val speaker = Speaker(mainName.text.toString(), mainCountry.text.toString())
+                speakers.add(speaker)
+                Snackbar.make(it, "You add ${speakers.size} speakers", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show()
+
+            }
         }
     }
 
