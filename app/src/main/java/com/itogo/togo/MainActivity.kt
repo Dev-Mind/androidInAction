@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.experimental.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,20 +17,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         saveSpeaker.setOnClickListener {
-            val speakers = SpeakerService.speakers
-
             if(mainName.text.isNullOrEmpty()){
                 Snackbar.make(it, "Nom est obligatoire", Snackbar.LENGTH_LONG)
                         .setAction("Erreur", null)
                         .show()
             }
             else{
+                val speakerDao = AppDatabase.instance(this).speakerDao()
                 val speaker = Speaker(mainName.text.toString(), mainCountry.text.toString())
-                speakers.add(speaker)
-                Snackbar.make(it, "You add ${speakers.size} speakers", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .show()
+                launch {
+                    speakerDao.insert(speaker)
+                    Snackbar.make(it, "You add ${speakerDao.all().size} speakers", Snackbar.LENGTH_LONG)
+                            .setAction("Etat", null)
 
+                            .show()
+                }
             }
         }
     }

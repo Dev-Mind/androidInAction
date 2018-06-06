@@ -1,9 +1,21 @@
 package com.itogo.togo
 
-data class Speaker(val name: String, val country: String? = "Unknown")
+import android.arch.persistence.room.*
+import java.util.*
 
-class SpeakerService(){
-    companion object {
-        val speakers = mutableListOf(Speaker("Guillaume", "France"))
-    }
+@Entity(tableName = "speaker")
+data class Speaker(@ColumnInfo val name: String,
+                   @ColumnInfo val country: String? = "Unknown",
+                   @PrimaryKey val uid: String = UUID.randomUUID().toString())
+
+@Dao
+interface SpeakerDao {
+    @Query("SELECT * FROM speaker")
+    fun all(): List<Speaker>
+
+    @Insert
+    fun insert(speaker: Speaker)
+
+    @Delete
+    fun delete(speaker: Speaker)
 }
